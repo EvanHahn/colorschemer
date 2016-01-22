@@ -16,6 +16,7 @@ function isDark (color) {
   return ((r + g + b) / 255) < 0.5
 }
 
+var updateCount = 0;
 function updateColors () {
   colorEls.forEach(function (el) {
     var color = sampleColors()
@@ -31,6 +32,13 @@ function updateColors () {
       el.classList.remove('dark')
     }
   })
+
+  updateCount += 1
+
+  if (updateCount === 4) {
+    var instructionsEl = document.querySelector('.instructions')
+    instructionsEl.classList.add('hidden')
+  }
 }
 
 var colorEls = []
@@ -50,6 +58,7 @@ document.body.appendChild(fragment)
 
 updateColors()
 
+document.addEventListener('click', updateColors)
 document.addEventListener('keyup', function (event) {
   if (event.keyCode === 32) {
     updateColors()
