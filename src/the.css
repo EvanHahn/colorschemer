@@ -19,6 +19,7 @@ noscript, .loading, .color {
   text-align: center;
   color: transparent;
   transition: background-color 0.1s ease-out,
+              width 0.2s ease-in-out,
               color 0.1s ease-out;
 }
 

@@ -16,13 +16,19 @@ function isDark (color) {
   return ((r + g + b) / 255) < 0.5
 }
 
-var updateCount = 0;
+var updateCount = 0
 function updateColors () {
-  colorEls.forEach(function (el) {
+  var randoms = colorEls.map(Math.random)
+  var randomTotal = randoms.reduce(function (total, n) {
+    return total + n
+  }, 0)
+
+  colorEls.forEach(function (el, i) {
     var color = sampleColors()
 
     el.textContent = color
     el.style.backgroundColor = color
+    el.style.width = (100 * (randoms[i] / randomTotal)) + '%'
 
     if (isDark(color)) {
       el.classList.add('dark')
