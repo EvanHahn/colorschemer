@@ -7,12 +7,29 @@ function sampleColors () {
   return '#' + color
 }
 
+function isDark (color) {
+  // see https://en.wikipedia.org/wiki/Luma_(video)
+  var r = parseInt(color.substr(1, 2), 16) * 0.2126
+  var g = parseInt(color.substr(3, 2), 16) * 0.7152
+  var b = parseInt(color.substr(5, 2), 16) * 0.0722
+
+  return ((r + g + b) / 255) < 0.5
+}
+
 function updateColors () {
   colorEls.forEach(function (el) {
     var color = sampleColors()
 
     el.textContent = color
     el.style.backgroundColor = color
+
+    if (isDark(color)) {
+      el.classList.add('dark')
+      el.classList.remove('light')
+    } else {
+      el.classList.add('light')
+      el.classList.remove('dark')
+    }
   })
 }
 
@@ -31,3 +48,9 @@ for (var i = 0; i < COLOR_COUNT; i++) {
 document.body.appendChild(fragment)
 
 updateColors()
+
+document.addEventListener('keyup', function (event) {
+  if (event.keyCode === 32) {
+    updateColors()
+  }
+})

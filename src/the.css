@@ -15,4 +15,15 @@ noscript, .color {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  font-family: Inconsolata, Consolas, Monaco, monospace;
+  transition: background-color 0.1s ease-out,
+              color 0.1s ease-out;
+}
+
+.color.dark {
+  color: #fff;
+}
+
+.color.light {
+  color: #000;
 }
