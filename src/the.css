@@ -3,19 +3,19 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: -apple-system, Lato, "Segoe UI", Avenir, Ubuntu, Tahoma, Verdana, Helvetica, sans-serif;
+  font-family: Inconsolata, Consolas, Monaco, monospace;
   font-size: 18pt;
+  font-weight: 100;
 }
 
 body {
   display: table;
 }
 
-noscript, .color {
+noscript, .loading, .color {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  font-family: Inconsolata, Consolas, Monaco, monospace;
   transition: background-color 0.1s ease-out,
               color 0.1s ease-out;
 }

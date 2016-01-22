@@ -45,6 +45,7 @@ for (var i = 0; i < COLOR_COUNT; i++) {
   fragment.appendChild(div)
 }
 
+document.body.removeChild(document.querySelector('.loading'))
 document.body.appendChild(fragment)
 
 updateColors()
