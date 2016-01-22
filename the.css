@@ -6,11 +6,11 @@ html, body {
   font-family: Inconsolata, Consolas, Monaco, monospace;
   font-size: 18pt;
   font-weight: 100;
+  overflow: hidden;
 }
 
 body {
   display: table;
-  overflow: hidden;
 }
 
 noscript, .loading, .color {
@@ -23,15 +23,16 @@ noscript, .loading, .color {
               color 0.1s ease-out;
 }
 
-.color.dark:hover {
+.not-touch .color.dark:hover {
   color: #fff;
 }
 
-.color.light:hover {
+.not-touch .color.light:hover {
   color: #000;
 }
 
 .instructions {
+  display: none;
   position: absolute;
   left: 0;
   bottom: 0;

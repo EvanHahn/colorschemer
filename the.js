@@ -2,6 +2,9 @@
 
 var COLOR_COUNT = 3
 
+var instructionsEl = document.querySelector('.instructions')
+var isTouchScreen = ('ontouchstart' in window) || !!(window.navigator && window.navigator.msPointerEnabled) || !!(window.DocumentTouch && document instanceof window.DocumentTouch)
+
 function sampleColors () {
   var color = COLORS[Math.floor(Math.random() * COLORS.length)]
   return '#' + color
@@ -28,7 +31,12 @@ function updateColors () {
 
     el.textContent = color
     el.style.backgroundColor = color
-    el.style.width = (100 * (randoms[i] / randomTotal)) + '%'
+    el.style.width = Math.ceil(100 * (randoms[i] / randomTotal)) + '%'
+
+    if (i === 0) {
+      // Avoids a 1-pixel thing on the left
+      document.body.style.backgroundColor = color
+    }
 
     if (isDark(color)) {
       el.classList.add('dark')
@@ -42,7 +50,6 @@ function updateColors () {
   updateCount += 1
 
   if (updateCount === 4) {
-    var instructionsEl = document.querySelector('.instructions')
     instructionsEl.classList.add('hidden')
   }
 }
@@ -52,12 +59,19 @@ var fragment = document.createDocumentFragment()
 
 for (var i = 0; i < COLOR_COUNT; i++) {
   var div = document.createElement('div')
-  div.style.width = (100 / COLOR_COUNT) + '%'
   div.className = 'color'
 
   colorEls.push(div)
   fragment.appendChild(div)
 }
+
+if (isTouchScreen) {
+  instructionsEl.innerHTML = 'tap for a new scheme'
+} else {
+  document.body.classList.add('not-touch')
+  instructionsEl.innerHTML = 'click or press space for a new scheme'
+}
+instructionsEl.style.display = 'block'
 
 document.body.removeChild(document.querySelector('.loading'))
 document.body.appendChild(fragment)
